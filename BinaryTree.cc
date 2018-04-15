@@ -17,9 +17,14 @@ class BinaryTree {
 		T data;
 		Leaf *left;
 		Leaf *right;
+		Leaf(T d = NULL, Leaf *l = NULL, Leaf *r = NULL):
+			data(d),
+			left(l),
+			right(r){}
 	};
-	void deleteAllLeaves(Leaf *leaf);
-	void printLeaf(Leaf *leaf);
+	void deleteAllLeaves(Leaf *&);
+	void insertLeaf(Leaf *&, T);
+	void printLeaf(Leaf *);
 	
 	//root leaf and size
 	Leaf *root;
@@ -39,11 +44,26 @@ BinaryTree<T>::~BinaryTree() {
 };
 
 template <class T>
-void BinaryTree<T>::deleteAllLeaves(Leaf *leaf){
+void BinaryTree<T>::deleteAllLeaves(Leaf *&leaf){
 	if(leaf == NULL) return;
 	deleteAllLeaves(leaf->left);
 	deleteAllLeaves(leaf->right);
 	delete leaf;
+};
+
+template <class T>
+void BinaryTree<T>::insert(T data){
+	insertLeaf(root, data);
+};
+
+template <class T>
+void BinaryTree<T>::insertLeaf(Leaf *&leaf, T data) {
+	if(leaf == nullptr) {
+		leaf = new Leaf(data, NULL, NULL);
+		return;
+	}
+	else if (leaf->data < data) insertLeaf(leaf->right, data);
+	else insertLeaf(leaf->left, data);
 };
 
 template <class T>
@@ -56,6 +76,6 @@ template <class T>
 void BinaryTree<T>::printLeaf(Leaf *leaf) {
 	if(leaf == NULL) return;
 	printLeaf(leaf->left);
-	printLeaf(leaf->right);
 	std::cout << leaf->data << " ";
+	printLeaf(leaf->right);
 };

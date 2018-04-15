@@ -17,6 +17,7 @@ int main() {
 		switch(input) {
 			case '1':
 			std::cin >> data;
+			bt.insert(data);
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cin.clear();
 			break;
