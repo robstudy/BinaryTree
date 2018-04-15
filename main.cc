@@ -11,7 +11,6 @@ int main() {
 	char input;
 	int data;
 	while(true) {
-		std::cout << "test\n";
 		std::cin >> input;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cin.clear();
@@ -22,7 +21,7 @@ int main() {
 			std::cin.clear();
 			break;
 			case '2':
-			
+			bt.print();
 			break;
 			case '3':
 			
