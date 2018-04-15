@@ -7,10 +7,11 @@ class BinaryTree {
 		BinaryTree<T>();
 		//destructor
 		~BinaryTree<T>();
+		//public functions
 		void insert(T);
 		void remove(T);
-		bool search(T);
 		void print();
+		bool search(T);
 	private:
 	//Leaf struct and functions
 	struct Leaf {
@@ -25,6 +26,7 @@ class BinaryTree {
 	void deleteAllLeaves(Leaf *&);
 	void insertLeaf(Leaf *&, T);
 	void printLeaf(Leaf *);
+	bool searchLeaf(Leaf *, T);
 	
 	//root leaf and size
 	Leaf *root;
@@ -60,6 +62,7 @@ template <class T>
 void BinaryTree<T>::insertLeaf(Leaf *&leaf, T data) {
 	if(leaf == nullptr) {
 		leaf = new Leaf(data, NULL, NULL);
+		size++;
 		return;
 	}
 	else if (leaf->data < data) insertLeaf(leaf->right, data);
@@ -78,4 +81,17 @@ void BinaryTree<T>::printLeaf(Leaf *leaf) {
 	printLeaf(leaf->left);
 	std::cout << leaf->data << " ";
 	printLeaf(leaf->right);
+};
+
+template <class T>
+bool BinaryTree<T>::search(T data) {
+	searchLeaf(root, data);
+};
+
+template <class T>
+bool BinaryTree<T>::searchLeaf(Leaf *leaf, T data) {
+	if(!leaf) return false;
+	if(leaf->data == data) return true;
+	if(leaf->data < data) searchLeaf(leaf->right, data);
+	else searchLeaf(leaf->left, data);
 };

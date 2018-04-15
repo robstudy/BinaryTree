@@ -25,7 +25,11 @@ int main() {
 			bt.print();
 			break;
 			case '3':
-			
+			std::cin >> data;
+			if(bt.search(data)) std::cout << data << " in tree!\n";
+			else std::cout << data << " not in tree.\n";
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.clear();
 			break;
 			case '4':
 			
