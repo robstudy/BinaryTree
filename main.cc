@@ -42,6 +42,12 @@ int main() {
 			break;
 			case '7':
 			exit(EXIT_SUCCESS);
+			case 's':
+			std::cout << "Size of tree: " << bt.Size() << " elements.\n";
+			break;
+			case 'c':
+			std::cout << "Number of nodes: " << bt.CountNodes() << std::endl;
+			break;
 			default:
 			break;
 		}

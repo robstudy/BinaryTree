@@ -15,6 +15,9 @@ class BinaryTree {
 		//Max and Min
 		T Max();
 		T Min();
+		//Size and Count Nodes
+		int Size();
+		int CountNodes();
 	private:
 	//Leaf struct and functions
 	struct Leaf {
@@ -30,6 +33,7 @@ class BinaryTree {
 	void insertLeaf(Leaf *&, T);
 	void printLeaf(Leaf *);
 	bool searchLeaf(Leaf *, T);
+	int rCountNodes(Leaf *);
 	
 	//root leaf and size
 	Leaf *root;
@@ -117,4 +121,27 @@ T BinaryTree<T>::Min() {
 		tmp = tmp->left;
 	}
 	return tmp->data;
+};
+
+//Size and CountNodes/rCountNodes
+template <class T>
+int BinaryTree<T>::CountNodes() {
+	return rCountNodes(root);
+};
+
+template <class T>
+int BinaryTree<T>::rCountNodes(Leaf *leaf){
+	//Count number of nodes
+	if(leaf == NULL) return 0; //empty
+	else {
+		int count = 1;
+		count += rCountNodes(leaf->left);
+		count += rCountNodes(leaf->right);
+		return count; //total
+	}
+}; 
+
+template <class T>
+int BinaryTree<T>::Size() {
+	return size;
 };
