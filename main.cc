@@ -5,7 +5,7 @@ int main() {
 	std::cout << "Integer Binary Tree!" << std::endl;
 	std::cout << "Instruction!\n" << "Press the following number commands:\n" 
 		<< "1. Insert\n" << "2. Print\n" << "3. Search\n" 
-		<< "4. Remove\n" << "7. Quit\n";
+		<< "4. Remove\n" << "5. Max\n" << "6. Min\n" << "7. Quit\n";
 		
 	BinaryTree<int> bt;
 	char input;
@@ -34,7 +34,12 @@ int main() {
 			case '4':
 			
 			break;
-			
+			case '5':
+			std::cout << "The max element is: " << bt.Max() << std::endl;
+			break;
+			case '6':
+			std::cout << "The minimum element is: " << bt.Min() << std::endl;
+			break;
 			case '7':
 			exit(EXIT_SUCCESS);
 			default:

@@ -12,6 +12,9 @@ class BinaryTree {
 		void remove(T);
 		void print();
 		bool search(T);
+		//Max and Min
+		T Max();
+		T Min();
 	private:
 	//Leaf struct and functions
 	struct Leaf {
@@ -77,6 +80,7 @@ void BinaryTree<T>::print(){
 
 template <class T>
 void BinaryTree<T>::printLeaf(Leaf *leaf) {
+	//Inorder-tree-walk
 	if(leaf == NULL) return;
 	printLeaf(leaf->left);
 	std::cout << leaf->data << " ";
@@ -94,4 +98,23 @@ bool BinaryTree<T>::searchLeaf(Leaf *leaf, T data) {
 	if(leaf->data == data) return true;
 	if(leaf->data < data) searchLeaf(leaf->right, data);
 	else searchLeaf(leaf->left, data);
+};
+
+//Max and Min
+template <class T>
+T BinaryTree<T>::Max(){
+	Leaf *tmp = root;
+	while(tmp->right != NULL) {
+		tmp = tmp->right;
+	}
+	return tmp->data;
+};
+
+template <class T>
+T BinaryTree<T>::Min() {
+	Leaf *tmp = root;
+	while(tmp->left != NULL) {
+		tmp = tmp->left;
+	}
+	return tmp->data;
 };
