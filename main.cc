@@ -32,7 +32,11 @@ int main() {
 			std::cin.clear();
 			break;
 			case '4':
-			
+			std::cout << "Enter element to be deleted: ";
+			std::cin >> data;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.clear();
+			bt.Remove(data);
 			break;
 			case '5':
 			std::cout << "The max element is: " << bt.Max() << std::endl;
@@ -53,4 +57,4 @@ int main() {
 		}
 	}
 	return 0;
-}
+};
